@@ -11,10 +11,14 @@ pipeline {
             }
         }
         stage('Tag Docker Image') {
-            steps {
-                sh 'docker tag $IMAGE_NAME:$BUILD_NUMBER $IMAGE_NAME:$JOB_NAME-$BUILD_NUMBER'
-            }
+    steps {
+        script {
+            def safeJobName = JOB_NAME.replaceAll('\\s','-')
+            sh "docker tag $IMAGE_NAME:$BUILD_NUMBER $IMAGE_NAME:${safeJobName}-$BUILD_NUMBER"
         }
+    }
+}
+
         stage('Push to Docker Hub') {
             steps {
                 script {
@@ -26,3 +30,4 @@ pipeline {
         }
     }
 }
+
