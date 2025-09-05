@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')   // ID from Jenkins credentials
-        IMAGE_NAME = "mohamed0s/my-docker-app"             // Replace with your Docker Hub repo
+        IMAGE_NAME = "mohamedosa/my-docker-app"             // Replace with your Docker Hub repo
     }
     stages {
         stage('Build Docker Image') {
@@ -33,6 +33,7 @@ pipeline {
 
     }
 }
+
 
 
 
