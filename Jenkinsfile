@@ -22,8 +22,10 @@ pipeline {
         stage('Push to Docker Hub') {
     steps {
         script {
-            docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
-                docker.image("$IMAGE_NAME:$JOB_NAME-$BUILD_NUMBER").push()
+           docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+    docker.image("$IMAGE_NAME:$JOB_NAME-$BUILD_NUMBER").push()
+}
+
             }
         }
     }
@@ -31,5 +33,6 @@ pipeline {
 
     }
 }
+
 
 
