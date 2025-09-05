@@ -20,14 +20,16 @@ pipeline {
 }
 
         stage('Push to Docker Hub') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS) {
-                        sh 'docker push $IMAGE_NAME:$JOB_NAME-$BUILD_NUMBER'
-                    }
-                }
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+                docker.image("$IMAGE_NAME:$JOB_NAME-$BUILD_NUMBER").push()
             }
         }
     }
 }
+
+    }
+}
+
 
